@@ -1,0 +1,63 @@
+{
+	"cale_galerie":"resources/images/disc-galery",
+	"imagini": [
+		{
+			"fisier":"disc1.jpeg",
+			"descriere":"Disc 1",
+			"alt": "disc-pic",
+			"luni":["ianuarie","februarie","iunie","martie", "noiembrie"]
+		},
+		{
+			"fisier":"disc2.jpeg",
+			"descriere":"Disc 2",
+			"alt": "disc-pic",
+			"luni":["martie","februarie","iunie", "noiembrie"]
+		},
+		{
+			"fisier":"disc3.jpeg",
+			"descriere":"Disc 3",
+			"alt": "disc-pic",
+			"luni":["ianuarie","februarie","iunie"]
+			
+		},
+		{
+			"fisier":"disc4.jpeg",
+			"descriere":"Disc 4",
+			"alt": "disc-pic",
+			"luni":["ianuarie","februarie","iunie","martie", "noiembrie"]
+		},
+		{
+			"fisier":"disc5.jpeg",
+			"descriere":"Disc 5",
+			"alt": "disc-pic"
+		},
+		{
+			"fisier":"disc6.jpeg",
+			"descriere":"Disc 6",
+			"alt": "disc-pic"
+		},
+		{
+			"fisier":"disc7.jpeg",
+			"descriere":"Disc 7",
+			"alt": "disc-pic",
+			"luni": "noiembrie"
+		},
+		{
+			"fisier":"disc8.jpeg",
+			"descriere":"Disc 8",
+			"alt": "disc-pic"
+		},
+		{
+			"fisier":"disc9.jpeg",
+			"descriere":"Disc 9",
+			"alt": "disc-pic",
+			"luni": "noiembrie"
+		},
+		{
+			"fisier":"disc10.jpeg",
+			"descriere":"Disc 10",
+			"alt": "disc-pic",
+			"luni": "noiembrie"
+		}
+	]
+}

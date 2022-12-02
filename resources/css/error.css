@@ -1,0 +1,25 @@
+		#err-img{
+			background-image:url("/resources/images/disc.png");
+			background-size:100% auto;
+			background-position:center center;
+			background-repeat:no-repeat;
+			width:30%;
+			
+		}
+		
+		#err-img img{
+			width:100%;
+		}
+		#err-columns{
+			display:flex;
+			padding-top:1em;
+			padding-left:1em;
+		}
+		
+		#err-columns section{
+			font-size:2em;
+			padding-left:1em;
+		}
+		#err-columns h2{
+			font-size:2em;
+		}

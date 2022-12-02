@@ -1,0 +1,137 @@
+body {
+  --selected-text-color: #332E29;
+  --unselected-text-color: #8C7F70;
+  --color3: #FFF4E6;
+  --color4: #D9CFC3;
+  --color6: #BFB7AC;
+  --color7: #DBD1BA;
+  --color9: #B3ABA1;
+  --menu-height: 4rem;
+  --button-width: 1rem;
+  --padding-menu: 14%;
+}
+
+#hamburger, #cb-menu {
+  display: none;
+}
+
+nav {
+  height: var(--menu-height);
+  font-size: var(--title-font-size);
+  color: var(--background-color);
+  max-width: 95rem;
+  margin: 0 auto;
+  padding: 0;
+}
+nav ul li a {
+  text-decoration: none;
+  color: var(--background-color);
+}
+
+.nav {
+  background-color: var(--header-color);
+  overflow: visible;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  padding-left: var(--padding-menu);
+  padding-right: var(--padding-menu);
+  z-index: 20;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  color: var(--background-color);
+  align-items: center;
+  width: 100%;
+  height: var(--menu-height);
+  line-height: var(--menu-height);
+}
+.menu ul {
+  list-style: none;
+  display: none;
+  position: relative;
+  transform: scale(1, 0);
+  transform-origin: center;
+  opacity: 0;
+}
+.menu > li:hover ::before {
+  opacity: 1;
+}
+.menu > li:hover > ul {
+  -webkit-animation-name: submenu-animation;
+          animation-name: submenu-animation;
+  -webkit-animation-duration: 0.7s;
+          animation-duration: 0.7s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.menu > li::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3.3rem;
+  bottom: 0;
+  width: 100%;
+  background-image: linear-gradient(45deg, var(--header-color), var(--header-color), white);
+  transition: all 1s linear;
+  opacity: 0;
+}
+.menu li {
+  display: block;
+  position: -webkit-sticky;
+  position: sticky;
+  width: 20%;
+  text-align: center;
+}
+.menu li ul {
+  width: 100%;
+  text-align: center;
+}
+.menu li ul li {
+  width: 100%;
+}
+.menu li:hover ul {
+  display: block;
+  opacity: 1;
+  background-color: var(--header-color);
+  position: absolute;
+}
+.menu > li > ul > li:hover {
+  background-color: var(--background-color);
+  transition: all 1s linear;
+}
+.menu > li > ul > li:hover a {
+  color: var(--header-color);
+  transition: all 1s linear;
+}
+
+@-webkit-keyframes submenu-animation {
+  50% {
+    transform: scale(1, 0.5);
+  }
+  100% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+@keyframes submenu-animation {
+  50% {
+    transform: scale(1, 0.5);
+  }
+  100% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}/*# sourceMappingURL=nav.css.map */

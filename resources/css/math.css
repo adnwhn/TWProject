@@ -1,0 +1,21 @@
+.math{
+    display: flex;
+    justify-content: center;
+}
+
+.radius-formula, .area-formula{
+    padding: 10px;
+    background-color: var(--unselected-text-color);
+    color: var(--selected-text-color);
+
+    border: 4px double var(--selected-text-color);
+
+}
+
+.radius-formula:hover, .area-formula:hover{
+    transition: all 1.2s;
+    background-color: var(--selected-text-color);
+    color: var(--unselected-text-color);
+
+    border: 4px double var(--unselected-text-color);
+}

@@ -1,0 +1,34 @@
+#galery{
+  padding-left:var(--padding-intern);
+  padding-right:var(--padding-intern);
+}
+
+#galery-grid {
+  display:grid;
+  width: 100%;
+  padding: 2rem;
+  grid-template-columns: repeat(3,1fr);
+  grid-row-gap:0.5em;
+  grid-column-gap:0.5em;
+  counter-reset: nrimg 1; /* nrimg = 3*/
+ 
+}
+
+#galery-grid img{
+  width: 100%;
+}
+
+#galery-grid figcaption{
+  text-align:center;
+  counter-increment: nrimg 2; /* creste din 2 in 2; nrimg+=2*/
+}
+
+#galery-grid figcaption::before{
+  content: counter(nrimg, upper-roman) ") ";
+}
+
+@media screen and (max-width:500px){
+  #galery-grid {
+      display:block;
+  }
+}

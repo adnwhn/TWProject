@@ -1,0 +1,105 @@
+body{--padding-menu: 0;}
+
+#hamburger{
+    display: block;
+    height: var(--menu-height);
+}
+
+#hamburger img{
+    height: 100%;
+    width: auto;
+}
+
+#cb-menu:checked~.menu{
+    display: block;
+}
+
+[name|="menu-outline"] {
+    color: var(--background-color);
+    height: var(--menu-height);
+    width: 30%;
+}
+
+.nav{
+    display: block;
+
+}
+
+.sale{display: none;}
+.account{display: none;}
+.cart{display: none;}
+.search{display: none;}
+
+.menu>li::before{background-image: none;}
+
+.menu{
+    display:none;
+    animation-name: menu-animation;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    transform-origin: top left;
+}
+
+.menu li{
+    width: 100%;
+    background-color: var(--header-color);
+}
+
+.menu>li{
+    position: relative;
+}
+
+.menu>li:hover{
+    background-color: var(--background-color);
+    transition: all 1s linear;
+}
+
+.menu>li:hover a, .menu>li:hover div{
+    color: var(--header-color);
+    transition: all 1s linear;
+}
+
+.menu li ul li{
+    color: var(--background-color);
+    position: relative;
+    z-index:30;
+}
+/* afisare submeniu deasupra*/
+.menu>li:hover ul{
+    position: absolute;
+    z-index:30;
+}
+
+.menu>li:hover ul li a{ 
+    color: var(--background-color);
+}
+
+.menu>li:hover ul li:hover a{ 
+    color: var(--header-color);
+    transition: all 1s linear;
+}
+
+
+@keyframes menu-animation{
+    0%{
+        transform: rotate(270deg);
+        opacity: 0;
+    }
+    100%{
+        transform: rotate(360deg);
+        opacity: 1;
+    }
+}
+
+@keyframes submenu-animation {
+    0%{
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    100%{
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+}
