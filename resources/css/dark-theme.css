@@ -1,0 +1,20 @@
+body.dark{
+    --background-color: black;
+    --header-color: rgb(85, 85, 85);
+    --footer-color: #919191;
+    --text-color: white;
+
+}
+
+
+body.dark .btn-primary {
+    --bs-btn-bg: red;
+}
+
+.light>*:nth-child(1){
+    display: none;
+}
+
+.dark>#dark-moon{
+    display: none;
+}

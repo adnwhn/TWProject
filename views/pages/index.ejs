@@ -17,7 +17,7 @@
 
     </head>
 
-    <body>
+    <body class>
 
     <%- include("../fragments/header.ejs") %>
         
@@ -25,6 +25,13 @@
 
             <hr class="hr"></hr>
             
+            <br>
+
+            <button class="btn btn-primary light" id="theme-change">
+                <ion-icon name="sunny" id="light-sun"></ion-icon>
+                <ion-icon name="moon" id="dark-moon"></ion-icon>
+            </button>
+
             <div class="banner"></div>
             <div class="watermark">Copyright &#169;<br>Diana Nita</div>
 
@@ -32,24 +39,38 @@
 
                 <section class="galery" id="galery">
                     <div id="galery-grid">
-                        <% for (let img of locals.images){
-
+                        <% var i = 0;
+                        for (let img of locals.images){
                             var d = new Date();
-                            var vect_luni = ["january", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "december"]
-                            var month = vect_luni[d.getMonth()]
+                            var value;
 
-                            if (img.available_month && img.available_month.includes(month)){ %>
+                            if (d.getMinutes()>=0 && d.getMinutes()<=14){
+                                value = 1
 
-                                <figure>
-                                    <picture>
-                                        <source srcset = "<%- img.file_medium %>" media="(max-width: 1000px)">
-                                        <source srcset = "<%- img.file_small %>" media="(max-width: 760px)">
-                                        <img src="<%- img.file %>" alt="<%- img.alt %>">                                   
-                                    </picture>
-                                    
-                                    <figcaption><%- img.artist + " - " + img.title %></figcaption>
-                                </figure>
-                            <% } %>
+                            } else if (d.getMinutes()>=15 && d.getMinutes()<=29) {
+                                value = 2
+
+                            } else if (d.getMinutes()>=30 && d.getMinutes()<=44) {
+                                value = 3
+
+                            } else if (d.getMinutes()>=45 && d.getMinutes()<=59) {
+                                value = 4
+                            }
+
+                            if (img.value==value){ 
+                                ++i;
+                                if(i<=10){%>
+                                    <figure>
+                                        <picture>
+                                            <source srcset = "<%- img.file_medium %>" media="(max-width: 1000px)">
+                                            <source srcset = "<%- img.file_small %>" media="(max-width: 760px)">
+                                            <img src="<%- img.file %>" alt="<%- img.alt %>">                                   
+                                        </picture>
+                                        
+                                        <figcaption><%- img.artist + " - " + img.title %></figcaption>
+                                    </figure>
+                                <%}
+                            } %>
 
                         <% } %>
                     </div>
@@ -57,8 +78,6 @@
                 </section>
 
                 <section class="presentation" id="presentation">
-                    
-                    <button class="btn btn-primary">click</button>
 
                     <p>
                         Being one of the <b>first audio formats</b> ever used, <b>vinyl jems</b> increase value over time. We sell <em>pre-owned</em> records, thus giving access to <b>exclusive</b> and <b>rare finds</b>.
@@ -204,7 +223,14 @@
                 </section>
 
                 <section id="user">
-                    <h3>User info</h3>
+                    <h3>
+                        <div class="text">
+                            User info 
+                        </div>
+                        <div class="refl-text">
+                                User info
+                        </div>
+                    </h3>
                     <br>
                     <p>IP: <%- locals.ip %></p>
                 </section>

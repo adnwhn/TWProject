@@ -4,19 +4,29 @@ const sharp = require("sharp");
 const ejs = require("ejs");
 const sass = require("sass");
 const {Client} = require("pg");
+const formidable = require("formidable");
+
+const{Utilizator}=require("./own_modules/utilizator.js")
+
+const AccesBD=require("./own_modules/accessdb.js")
 
 var cssBootstrap = sass.compile(__dirname + "/resources/sass/customize-bootstrap.scss",{sourceMap:true});
 
 fs.writeFileSync(__dirname + "/resources/css/libraries/bootstrap-custom.css",cssBootstrap.css);
 
-var client= new Client({database:"TW_Project",
+var client= new Client({database:"twproject",
         user:"diana", 
         password:"diana", 
         host:"localhost", 
         port:5432});
 client.connect();
 
-client.query("select * from test_table", function(err, res){
+//var instanceDB = AccesBD.getInstance({init: "local"});
+//var Client = instanceDB.getClient();
+
+//instanceDB.select({fields:["lastname","firstname"], table: "discs"}, function(err, rez){})
+
+client.query("select * from discs", function(err, res){
     if(err)
         console.log(err);
     else
@@ -35,6 +45,61 @@ app.set("view engine", "ejs");
 
 app.use("/resources", express.static(__dirname + "/resources"));
 
+
+////// users
+
+app.post("/inregistrare",function(req, res){
+    var username;
+    console.log("ceva");
+    var formular= new formidable.IncomingForm()
+    formular.parse(req, function(err, campuriText, campuriFisier ){
+        console.log(campuriText);
+ 
+        var eroare="";
+
+        var newUser = new Utilizator();
+
+        try{
+            newUser.setName(campuriText.nume);
+            newUser.setUserame(campuriText.username);
+            newUser.email=campuriText.email;
+            newUser.firstname=campuriText.prenume;
+
+            newUser.password=campuriText.parola;
+            newUser.culoare_chat=campuriText.culoare_chat;
+            newUser.saveUser();
+        }catch(e){
+            error += e.message;
+            console.log(error)
+        }
+ 
+        if(!eroare){
+           
+        }
+        else
+            res.render("pagini/inregistrare", {err: "Eroare: "+eroare});
+    });
+    formular.on("field", function(nume,val){  // 1
+   
+        console.log(`--- ${nume}=${val}`);
+       
+        if(nume=="username")
+            username=val;
+    })
+    formular.on("fileBegin", function(nume,fisier){ //2
+        console.log("fileBegin");
+       
+        console.log(nume,fisier);
+        //TO DO in folderul poze_uploadate facem folder cu numele utilizatorului
+ 
+    })    
+    formular.on("file", function(nume,fisier){//3
+        console.log("file");
+        console.log(nume,fisier);
+    });
+});
+
+///////
 
 globalObj = {
     errors: null,
@@ -73,36 +138,36 @@ function renderError(res, idx, title, text, image){
     }
 }
 
-app.get("/produse", function(req, res){
-    client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err,rezCateg){
-        client.query("select * from prajituri", function(err, rez){
+app.get("/discs", function(req, res){
+    client.query("select * from unnest(enum_range(null::genres))", function(err,rezCateg){
+        client.query("select * from discs", function(err, rez){
+            console.log(rezCateg);
 
-            continuareQuery = " "
+            continueQuery = " "
             if(req.query.tip){
-                continuareQuery += "and tip='${req.query.tip}'"  // "tip = '" + req.query.tip + "'"
+                continueQuery += "and tip='${req.query.tip}'"  // "tip = '" + req.query.tip + "'"
             }
 
-            client.query("select * from prajituri where 1=1" + continuareQuery, function(err,rez){
+            client.query("select * from discs where 1=1" + continueQuery, function(err,rez){
                 if(err){
                         console.log(err);
-                        renderError(res, 2);
+                        renderError(res, 2); // error page index 2
                 } 
                 else
-                    res.render("pages/produse", {produse:rez.rows, optiuni:rezCateg.rows});
+                    res.render("pages/discs", {discs :rez.rows, optiuni:rezCateg.rows});
                 });
             });  
     });
 });
 
-app.get("/produs", function(req, res){
-    console.log(req.params);
-    client.query("select * from prajituri where id=" + req.params.id, function(err, rez){
+app.get("/disc/:id", function(req, res){
+    client.query("select * from discs where id=" + req.params.id, function(err, rez){
         if(err){
             console.log(err);
             renderError(res, 2);
         } 
         else
-            res.render("pages/produse", {produse:rez.rows[0]});
+            res.render("pages/disc", {disc:rez.rows[0]});
     });
     
 });

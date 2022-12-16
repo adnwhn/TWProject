@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="keywords" content="music, vinyl, record, E-store, disc, album, records, sale, song, analog, turntable, pick-up, rare, exclusive">
+        <meta name="description" content="AAV - all about vinyl. Exclusive record selection: new, pre-owned, rare finds. Buy discs, audio equipment and more!">
+        
+        <title>AAV Recs - discs</title>
+        <%- include("../fragments/head") %>     
+        <script type="text/javascript" src=/resources/js/discs.js></script>
+    </head>
+    <body>
+    <%- include("../fragments/header") %>
+
+    <main>
+        <br>
+        <label> Album name: <input type="text" id="inp-name"></label>
+        
+        <div><br> Number of songs:<!-- same name to form group -->
+            <p><label>EP (songs &lt; 7)
+                <input id="i_rad1"  name="gr_rad" value="0:350" type="radio"/>
+            </label></p>
+            <p><label>LP (7 &le; songs &lt; 12)
+                <input id="i_rad2"  name="gr_rad" value="350:750" type="radio"/>
+            </label>
+            <p><label>Mixtape (12 &le; songs)
+                <input id="i_rad3" name="gr_rad" value="700:1000000000" type="radio"/>
+            </label>
+            <p><label>Toate
+                <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
+            </label>
+        </div>
+        <br>
+        <div> Release year:
+            <p>
+                <label>This year's releases
+                    <input id="i_check1" name="gr_chck" checked value="10" type="checkbox"/>
+                </label>
+            </p>
+            <p>
+                <label>After 2017
+                    <input id="i_check2" name="gr_chck" value="10" type="checkbox"/>
+                </label>
+            </p>
+            <p>
+                <label>After 2000, no later than 2016
+                    <input id="i_check3" name="gr_chck" value="20" type="checkbox"/>
+                </label> 
+            </p>
+            <p>
+                <label>Before 2000
+                    <input id="i_check4" name="gr_chck" value="30" type="checkbox"/>
+                </label>  
+            </p>
+        </div>
+        <br>
+        <label> Minimum price: <input type="range" id="inp-price" value="0" min="0"  max="70"> <span id="infoRange">(0)</span></label>
+        
+        <p><br>
+            <label>Simple select:
+                <select id="inp-cat">
+                    <option id="sel-all" selected value="all">all</option>
+                    <% for (let opt of locals.optiuni) { %>
+                        <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                    <% } %>
+                </select>
+            </label>
+        </p>
+        <p><br>
+            <label>Multi select:
+                <select id="i_sel_multi" multiple size="5">
+                    <option value="M">Mint</option>
+                    <option value="NM" selected>Near Mint</option>
+                    <option value="VG">Very Good</option>
+                    <option value="G" selected>Good</option>
+                    <option value="F">Fair</option>
+                </select>
+            </label>
+        </p>
+        <p>
+        <br>
+        <button id="filter">Filter</button> 
+        <button id="reset">Reset</button><br/>
+        <br>
+        <button id="sortAscName">Ascending order by price and name</button>
+        <button id="sortDescName">Descending order by price and name</button>
+        </p>
+        <br>
+        <p id="p-suma">Press Alt+"C" for summing the prices of all shown products. </p>
+
+        <section id="discs">
+            <h2>Discs</h2>
+            <div class="grid-prod">
+                <% for( let disc of locals.discs) { %>
+                    <article class="disc" >
+                        <h3 class="album">Album: <a href="/disc/<%-disc.id %>" ><span class="val-album"><%- disc.album%></span></a></h3>
+                        <div class="info-prod">
+                            <p class="artist">Artist: <span class="val-artist"><%- disc.artist%></span></p>
+                            <p class="price">Price: <span class="val-price"><%- disc.price%></span></p>
+                            <p class="songs">Songs: <span class="val-songs"><%- disc.songs%></span></p>
+                            <p class="genre">Genre: <span class="val-genre"><%- disc.genre%></span></p>
+                            <p class="condition">Condition: <span class="val-condition"><%- disc.condition%></span></p>
+                            <p class="stock">In Stock: <span class="val-stock"><%- disc.stock%></span></p>
+                        </div>
+                        <figure>
+                            <a href="/disc/<%-disc.id %>" ><img src="/resources/images/disc-galery/<%- disc.image %>" style="width:23%;height:auto;" alt="[image <%- disc.album %>]" /></a>
+                        </figure>
+                        <label class="select-cart">
+                            Select<br/>
+                            <input type="checkbox" value="<%-disc.id %>" autocomplete="off">
+                        </label>
+                    </article>
+                <% }%>
+            </div>
+        </section>
+        <br>
+    </main>
+
+    <%- include("../fragments/footer") %>
+    </body>
+</html>

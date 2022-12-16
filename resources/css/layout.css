@@ -41,7 +41,11 @@ header{
     background-color: var(--header-color);
     font-size: var(--title-font-size);
     color: var(--background-color);
+}
 
+header a{
+    text-decoration: none;
+    color: var(--background-color);
 }
 
 footer{background-color: var(--footer-color);}

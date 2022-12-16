@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="keywords" content="music, vinyl, record, E-store, disc, album, records, sale, song, analog, turntable, pick-up, rare, exclusive">
+        <meta name="description" content="AAV - all about vinyl. Exclusive record selection: new, pre-owned, rare finds. Buy discs, audio equipment and more!">
+        
+        <title>AAV Recs - discs</title>
+        <%- include("../fragments/head") %>     
+        
+        <link href="/resources/css/product.css" type="text/css" rel="stylesheet" />
+
+    </head>
+    <body>
+    <%- include("../fragments/header") %>
+
+    <main>
+        <section>
+            <h2>Disc page</h2>
+                <article id="art-prod">
+                    <h3><span class="album"><%- locals.disc.album %></span></h3>
+                    <br>
+                    <p>Artist: <span class="artist"><%- locals.disc.artist %> </span></p>
+                    <p>Genre: <span class="genre"><%- locals.disc.genre %> </span></p>
+                    <p>Condition: <span class="condition"><%- locals.disc.condition %> </span></p>
+                    <p>Number of songs: <span class="songs"><%- locals.disc.songs %> </span></p>
+                    <p>In stock: <span class="stock"><%- locals.disc.stock %> </span></p>
+                    <p>Price: <span class="price"><%- locals.disc.price %> </span></p>
+                    <p>Release date: <span class="release"><%- locals.disc.release %> </span></p>
+                    <br>
+                    <figure class="imag-disc">
+                        <img  src="/resources/images/disc-galery/<%- locals.disc.image %>" alt="[image <%- locals.disc.name %>]" />
+                    </figure>    
+                </article>
+            
+        </section>
+        <br>
+    </main>
+
+    <%- include("../fragments/footer") %>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+h2{
+    padding:0.4rem;
+}
+
+#art-prod{
+    margin:0 auto;
+    width:70%;
+    max-width:700px;
+    background-color: var(--unselected-text-color);
+    box-shadow: 0px 0px 10px 5px var(--selected-text-color);
+    padding:0.4rem;
+    color: var(--selected-text-color);
+}
+
+#art-prod p{
+    margin:0;
+    padding:0.4rem;
+    font-weight:bold;
+    font-size:1.1rem;
+}
+
+#art-prod p span{
+    font-weight: normal;
+}
+
+#art-prod p:nth-of-type(even){
+    background-color: var(--background-color);
+    /*color: var(--header-color);*/
+}
+
+#art-prod p:nth-of-type(odd){
+    background-color: var(--header-color);
+    /*color: var(--background-color);*/
+}
+
+.imag-disc{
+    text-align: center;
+}
+
+.imag-disc img{
+    width:50%;
+    height:auto;
+}
+
+@media screen and (max-width: 700px){
+    #art-prod{
+        margin:0 auto;
+        width:95%;
+    }
+}
