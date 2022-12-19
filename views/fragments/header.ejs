@@ -25,10 +25,10 @@
 
         <li><a href="/discs">Genres</a>
             <ul>
-                <li><a href="edm">EDM</a></li>
-                <li><a href="rock">Rock</a></li>
-                <li><a href="hiphop">Hip Hop</a></li>
-                <li><a href="groove">Groove</a></li>  
+                <li><a href="/discs?genre=EDM">EDM</a></li>
+                <li><a href="/discs?genre=rock">Rock</a></li>
+                <li><a href="/discs?genre=hip hop">Hip Hop</a></li>
+                <li><a href="/discs?genre=groove">Groove</a></li>  
             </ul>
         </li>
 
@@ -45,3 +45,16 @@
         </li>                
     </ul>
 </nav>
+
+<% if(locals.utilizator && locals.utilizator.rol=="admin") { %>
+    <li><a href="/useri">Useri</a></li>
+<% } %>
+<% if(locals.utilizator) { %>
+    <li><div><%- locals.utilizator.username %></div>
+        <ul>
+            <li><a href="/profil">Profil</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </li>
+<% } %>
+

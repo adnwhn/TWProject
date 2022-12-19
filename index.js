@@ -10,6 +10,8 @@ const{Utilizator}=require("./own_modules/utilizator.js")
 
 const AccesBD=require("./own_modules/accessdb.js")
 
+const session = require('express-session')
+
 var cssBootstrap = sass.compile(__dirname + "/resources/sass/customize-bootstrap.scss",{sourceMap:true});
 
 fs.writeFileSync(__dirname + "/resources/css/libraries/bootstrap-custom.css",cssBootstrap.css);
@@ -26,14 +28,23 @@ client.connect();
 
 //instanceDB.select({fields:["lastname","firstname"], table: "discs"}, function(err, rez){})
 
+/*
 client.query("select * from discs", function(err, res){
     if(err)
         console.log(err);
     else
         console.log(res);
 });
+*/
 
 app = express();
+
+app.use(session({
+    secret: 'abcdefg',
+    resave: true,
+    saveUninitialized: false
+}));
+
 
 var vedeToataLumea = "ceva";
 app.use("/*", function(req, res, next){
@@ -99,11 +110,40 @@ app.post("/inregistrare",function(req, res){
     });
 });
 
+app.post("/login",function(req, res){
+    var username;
+    var formular = new formidable.IncomingForm();
+    formular.parse(req, function(err, campuriText, campuriFisier){
+        Utilizator.getUserByUsername(campuriText.username, {
+            res: res,
+            parola: campuriText.parola
+        }, function(u, obparam){
+            let passCript = Utilizator.criptPassword(ob.param.parola);
+            if(u.parola=passCript){
+                obparam.req.session.utilizator=u;
+                obparam.res.redirect("/index");
+                //ob.param.render("/login");
+            } else {
+                obparam.res.render("pages/index", {eroareLogin:"Incorrect login data"})
+            }
+        })
+    });
+
+});
+
+app.get("/logout", function(req, res){
+    req.session.destroy();
+    res.locals.utilizator=null;
+    res.render("pagini/logout");
+});
+
+
 ///////
 
 globalObj = {
     errors: null,
-    images: null
+    images: null,
+    menuOptions: null
 }
 
 app.get(["/","/index", "/home"], function(req, res){
@@ -139,13 +179,13 @@ function renderError(res, idx, title, text, image){
 }
 
 app.get("/discs", function(req, res){
-    client.query("select * from unnest(enum_range(null::genres))", function(err,rezCateg){
+    client.query("select * from unnest(enum_range(null::genres))", function(err, rezCateg){
         client.query("select * from discs", function(err, rez){
             console.log(rezCateg);
 
-            continueQuery = " "
-            if(req.query.tip){
-                continueQuery += "and tip='${req.query.tip}'"  // "tip = '" + req.query.tip + "'"
+            continueQuery = " ";
+            if(req.query.genre){
+                continueQuery += `and genre='${req.query.genre}'`  
             }
 
             client.query("select * from discs where 1=1" + continueQuery, function(err,rez){
@@ -154,7 +194,7 @@ app.get("/discs", function(req, res){
                         renderError(res, 2); // error page index 2
                 } 
                 else
-                    res.render("pages/discs", {discs :rez.rows, optiuni:rezCateg.rows});
+                    res.render("pages/discs", {discs:rez.rows, options:rezCateg.rows});
                 });
             });  
     });

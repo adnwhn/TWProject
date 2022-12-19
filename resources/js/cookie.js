@@ -28,3 +28,4 @@ window.addEventListener("load", function(){
         document.getElementById("banner").style.display="none";
     }
 })
+
