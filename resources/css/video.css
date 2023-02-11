@@ -1,0 +1,10 @@
+.video{
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+::cue{
+    background-image:linear-gradient(to bottom, black, black 50%, grey);
+}

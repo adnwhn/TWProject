@@ -1,0 +1,29 @@
+#users{
+	border-collapse:collapse;
+	width: fit-content;
+}
+
+#users td, #users th{
+	border:1px solid black;
+	padding:5px;
+	
+}
+
+main{
+	padding-left:1.5rem;
+}
+
+.btn-sm{
+	max-width: 40%;
+	margin-right: 1px;
+	margin-left: 1px;
+}
+
+.sm{
+	text-align: center;
+}
+
+.smb{
+	display: flex;
+}
+

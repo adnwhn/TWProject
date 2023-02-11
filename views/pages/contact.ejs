@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Contact</title>
+		<%- include("../fragments/head") %>
+		<link rel="stylesheet" type="text/css" href="/resources/css/contact.css" />
+	</head>
+	<body class="container">
+		<header>
+			<%- include("../fragments/header") %>
+		</header>
+		<main>
+			
+			<h1>Send us a message!</h1>
+			<p>Disclaimer: Comments are not moderated.</p>
+
+            <form method="post" action="/contact">
+                <label>Your comment:<br/>
+                    <textarea cols="30" rows="5" name="message" placeholder="Write us a message!"></textarea>
+                </label><br/>
+                <input type="submit" value="Send the message!">
+            </form>
+			<section>
+				<h2>Messages:</h2>
+				<% if (locals.messages) {
+					var messageSort=locals.messages.sort(function(a,b) {return (new Date(b.attributes.data)).getTime()-(new Date(a.attributes.data)).getTime()})
+					for (let msg of messageSort) { 
+						let dt=new Date(msg.attributes.data);
+						%>
+						<article class="message-c">
+							<h3 style="color: var(--background-color);"><span class="username"><%= msg.attributes.username%></span> says:</h3>
+                            <% if (msg.attributes.username=="admin") { %>
+							    <p style="color: rgb(10, 78, 10)"><%= msg.elements[0].text %></p>
+                            <% } else { %>
+                                <p><%= msg.elements[0].text %></p>
+                            <% } %>
+
+							<p><small><time datetime="<%= dt.getUTCDate() %>"><%= dt.toLocaleString('en-EN', {
+														weekday: 'long', 
+														day: 'numeric',
+														year: 'numeric', 
+														month: 'long', 
+														hour: 'numeric',
+														minute: 'numeric', 
+														second: 'numeric',
+													}) %></time></small>
+							</p>
+						</article>
+					<% } %>
+				<% } %>
+			</section><br>
+		</main>
+		
+		<%- include("../fragments/footer") %>
+		
+	</body>
+</html>

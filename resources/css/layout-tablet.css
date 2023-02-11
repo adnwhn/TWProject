@@ -1,0 +1,31 @@
+body{
+    --padding-list-dim: 1.7rem;
+    --padding-full-dim: 1.7rem;
+    --padding-dim: 1.7rem;
+
+    --title-font-size: 1.7rem;
+    --section-title-font-size: 1.7rem;
+}
+/*
+*{
+     transition: font-size 0.3s; 
+    
+}
+*/
+#page-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-areas: 
+        "z-galery z-galery"
+        "z-presentation z-presentation"
+        "z-table z-secondhand"
+        "z-onsale z-secondhand"
+        "z-onsale z-faq"
+        "z-accessories z-trivia"
+        "z-video z-trivia"
+        "z-user z-trivia";
+}
+
+.table{
+    overflow-x: scroll;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Factură</title>
+		<style>
+			body{
+				counter-reset: cnt;
+			}
+			#tabl{
+				border-collapse:collapse;
+			}
+			tr{
+				counter-increment: cnt;
+			}
+
+			#tabl td, #tabl th{
+				border:1px solid black;
+			}
+
+			p{color:grey};
+			#container-table::after{
+				content:"Numar products" counter(cnt);
+				display: block;
+			}
+		</style>
+		<link rel="stylesheet" href="<%- locals.protocol%><%- locals.domainName %>/resources/css/invoice.css" type="text/css">
+		<script src="<%- locals.protocol%><%- locals.domainName %>/resources/js/invoice.js"></script>
+	</head>
+	<body>
+		<h1>Invoice AAV Recs</h1>
+		<p>Dear <%-locals.user.name %>, here you have a list of all bought products.</p> 
+		<div id="container-table">
+			<table id="tabl">
+				<thead>
+					<tr>
+						<th>Product</th>
+						<th>Price</th>
+						<th>QR</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<% 
+					var sum=0;
+					for (let prod of locals.products) {
+						sum+=parseFloat(prod.price);
+						%>
+						<tr>
+							<td><%-  prod.name %></td>
+							<td><%-  prod.price %></td>
+							<td><img src="<%- locals.protocol%><%- locals.domainName %>/resources/images/qrcode/<%-  prod.id %>.png"></td>
+						</tr>
+					<% } %>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="3">Total: <%- sum %></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</body>
+</html>

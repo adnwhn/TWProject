@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html  lang="en">
+
+    <head>
+
+        <title>AAV Recs</title>
+
+        <meta name="keywords" content="music, vinyl, record, E-store, disc, album, records, sale, song, analog, turntable, pick-up, rare, exclusive">
+        <meta name="description" content="AAV - all about vinyl. Exclusive record selection: new, pre-owned, rare finds. Buy discs, audio equipment and more!">
+
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
+        <%- include("../fragments/head.ejs") %>
+
+
+    </head>
+
+    <body class>
+
+    <%- include("../fragments/header.ejs") %>
+        
+        <main>
+
+            <hr class="hr"></hr>
+            
+            <br>
+
+            <div class="banner"></div>
+            <div class="watermark">Copyright &#169;<br>Diana Nita</div>
+
+            <div id="page-grid">
+
+                <section class="galery" id="galery">
+                    <div id="galery-grid">
+                        <% var i = 0;
+                        for (let img of locals.images){
+                            var d = new Date();
+                            var value;
+
+                            if (d.getMinutes()>=0 && d.getMinutes()<=14){
+                                value = 1
+
+                            } else if (d.getMinutes()>=15 && d.getMinutes()<=29) {
+                                value = 2
+
+                            } else if (d.getMinutes()>=30 && d.getMinutes()<=44) {
+                                value = 3
+
+                            } else if (d.getMinutes()>=45 && d.getMinutes()<=59) {
+                                value = 4
+                            }
+
+                            if (img.value==value){ 
+                                ++i;
+                                if(i<=10){%>
+                                    <figure>
+                                        <picture>
+                                            <source srcset = "<%- img.file_medium %>" media="(max-width: 1000px)">
+                                            <source srcset = "<%- img.file_small %>" media="(max-width: 760px)">
+                                            <img src="<%- img.file %>" alt="<%- img.alt %>">                                   
+                                        </picture>
+                                        
+                                        <figcaption><%- img.artist + " - " + img.title %></figcaption>
+                                    </figure>
+                                <%}
+                            } %>
+
+                        <% } %>
+                    </div>
+
+                </section>
+
+                <section class="presentation" id="presentation">
+
+                    <p>
+                        Being one of the <b>first audio formats</b> ever used, <b>vinyl jems</b> increase value over time. We sell <em>pre-owned</em> records, thus giving access to <b>exclusive</b> and <b>rare finds</b>.
+                    </p>
+
+                </section>
+
+                <section class="table" id="table">
+                    <table>
+                        <caption>Stock Overview</caption>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>All</th>
+                                <th>New</th>
+                                <th>Topseller</th>
+                                <th>Sale</th>
+                                <th>In Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="odd">
+                                <td class="col1">Electronic Dance</td>
+                                <td>20</td>
+                                <td>7</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td>5</td>
+                            </tr>
+                            <tr class="even">
+                                <td class="col1">Rock</td>
+                                <td>17</td>
+                                <td>6</td>
+                                <td>4</td>
+                                <td>6</td>
+                                <td>7</td>
+                            </tr>
+                            <tr class="odd">
+                                <td class="col1">Hip Hop</td>
+                                <td>14</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>4</td>
+                            </tr>
+                            <tr class="even">
+                                <td class="col1">Groove</td>
+                                <td>11</td>
+                                <td>2</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="foot">
+                                <td class="col1">All Genres</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                        <%#
+                        <tfoot>
+                            <tr class="foot">
+                                <td class="col1">All </td>
+                                <td colspan="4">*sum*</td>
+                            </tr>
+                        </tfoot> 
+                        %>
+                    </table>
+                   
+                </section>
+
+                <section class ="secondhand" id="secondhand">
+                    <h2>Second Hand, Second  Love</h2>
+                    <p>Usage condition grading terminology:</p>
+                    <ol id="grading-list">
+                        <li><i>M </i><strong>(mint)</strong> - Absolutely <b>perfect</b> in every way. <b>Never</b> been played and usually <b>sealed</b>. Often rumored but rarely seen, Mint should never be used as a grade unless more than one person agrees that the record or sleeve truly is in this condition.</li>
+                            
+                        <li><i>NM </i><strong>(near mint)</strong> - The record looks like it's been opened for the <b>first</b> time. <b>Glossy</b> disc which clearly has only been played a <b>few</b> times. There are <b>no</b> marks on it and the whole package is <b>complete</b>.</li>
+                            
+                        <li><i>VG </i><strong>(very good)</strong> - More <b>obvious flaws</b>, but still usable. A little rub, light visible scratches or marks, a seam split. When played, it has <em>surface noise</em>, and some scratches may be audible, especially in soft passages and during a song's intro and ending. But the noise will not overpower the music otherwise.</li>
+                            
+                        <li><i>G </i><strong>(good)</strong> - Good does <b>not</b> mean <b>bad</b>! The record still plays through without skipping, so it can serve as a filler song until something better comes along. But it has <b>significant</b> <em>surface noise</em> and <em>groove wear</em>.</li>
+                            
+                        <li><i>F </i><strong>(fair)</strong> - Expect <b>major</b> noise <b>issues</b>, <em>skipping</em> or <em>repeating</em>. The record is cracked, warped and have <b>deep scratches</b>. The cover are also <b>wrecked</b>. Only the most outrageously rare items ever sell for more than a few cents in this condition.</li>
+                    </ol>
+                </section>
+
+                <section id="accessories">
+                    <h2>Accessories</h2>
+                    <p>Every collector knows gear is essential for preserving one's stash. For this particular reason, our store has a great selection of accessories. From record cleaners to slip mats, these extras are for casual enthusiasts and die-hard collectors alike.
+                    </p>
+
+                    <div class="i">
+
+                        <iframe name="ifr-video" width="250" height="140.15" src="https://www.youtube.com/embed/UBp0fkcf0jE" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                        <div class="iframe">
+
+                            <a target="ifr-video" href="https://www.youtube.com/embed/UBp0fkcf0jE" class="essentials">Essentials</a>
+
+                            <a target="ifr-video" href="https://www.youtube.com/embed/n6AcC5dGJgk" class="essentials">Cleaning</a>
+
+                        </div>
+                    </div>
+                </section>
+
+                <section id="onsale">
+                    <h2>NOW ON SALE!</h2>
+                    <figure>
+                        <picture>
+                            <source srcset="resources/images/second-hand-mobile.jpg" media="(max-width:700px)">
+                            <source srcset="resources/images/second-hand-tablet.jpg" media="(max-width:1200px)">
+                            
+                            <img src="resources/images/second-hand-desktop.jpg" alt="image" style="width:100%;">
+                            
+                        </picture>
+                        <figcaption style="text-align:center;" >Don't miss the chance to be the owner of these discounted pieces. Limited stock!</figcaption>
+                    </figure>
+                </section>
+
+                <section class="faq" id="faq">
+                    <h3>FAQ</h3>
+
+                    <details>
+                        <summary>Why pre-owned?</summary>
+                        <p>There are two simple reasons:
+                            <ol>
+                                <li>Cheaper goods</li>
+                                <li>Out of fabrication pieces and dubplates</li>
+                            </ol>
+                    </details>
+
+                    <details>
+                        <summary>Is it safe to deliver vinyl records?</summary>
+                        <p>Depends. In our case, yes! We know vinyls require careful handling. Therefore, we use the best <em>fragile goods delivery service</em> available.</p>
+                    </details>
+                        
+                </section>
+
+                <section id="user">
+                    <h3>
+                        <div class="text">
+                            User info 
+                        </div>
+                        <div class="refl-text">
+                                User info
+                        </div>
+                    </h3>
+                    <br>
+                    <p>IP: <%- locals.ip %></p>
+
+                    <% if(!locals.user) { %>
+                        <form id="form_inreg"  method="post" class="date"  action="/login"  enctype="multipart/form-data">
+                            <p>
+                                <label>
+                                    Username: <input type="text" name="username" id="inp-username" value="" required pattern="[A-Za-z0-9]+">
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    Password: <input id="passw" type="password" required  name="password" value="">
+                                </label>
+                            </p>
+                            <p><input type="submit" value="Logare"></p>
+                        </form>
+                        <p> <%- locals.eroareLogin %> </p>
+                        <% } else {%>
+                            <%- locals.successLogin %>
+                    <% }  %>
+                    
+                    <p>Online Users:</p>
+                    <ol>
+                        <% for(let user of locals.usersOnline){ %>
+                            <li>[<%- u.firstname%>][<%- u.lastname%>] - [<%- u.username %>]</li>
+                                
+                        <% } %>
+                    </ol>
+
+                    <%
+                    dateServer=new Date();
+                    strDate=dateServer.getHours()+":"+dateServer.getMinutes()+":"+dateServer.getSeconds();
+                    %>
+                    <p>On localhost the time values are identic; difference can be seen on Heroku.</p>
+                    <p>Time server:<span id="date_server"><%= strDate %></span></p>
+                    <p>Time client:<span id="date_client"></span></p>
+                    <script>
+                        function zero(nr){date_client
+                            if (nr<10) return "0"+nr;
+                            return nr;
+                        }
+                        
+                        d=new Date()
+                        document.getElementById("date_client").innerHTML=zero(d.getHours())+":"+zero(d.getMinutes())+":"+zero(d.getSeconds());
+                
+                        function updateDateElem(id_div){
+                            var date_div=document.getElementById(id_div);
+                            if (date_div.innerHTML!="")
+                            {
+                                var time=date_div.innerHTML.split(":")
+                                var dt=new Date(2000,1,15, time[0],time[1], time[2] );//date doesn't matter (random values for year/month/day), only the time
+                            }
+                            else{
+                                var dt=new Date();
+                            }
+                            dt.setSeconds(dt.getSeconds()+1)
+                            date_div.innerHTML=zero(dt.getHours())+":"+zero(dt.getMinutes())+":"+zero(dt.getSeconds());
+                        }
+                        function updateDate(){
+                            updateDateElem("date_client");
+                            updateDateElem("date_server");
+                        }
+                        updateDate()
+                        setInterval(updateDate,1000)
+                    </script>
+                </section>
+
+                <article id="trivia"> 
+                    <h3>Trivia: How to calculate the surface of a disc?</h3>
+                    <p>
+                        Generally, there are 2 types of vinyl records: <i>33 RPM</i> and <i>45 RPM</i>. Their dimensions are 18 cm and 30 cm respectively. These lengths correspond to the <i>diametral length of a circle</i> (D), which helps us to calculate the <i>radius</i>: <br> <br>
+                        <div class="math">
+                            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <mrow class="radius-formula">
+                                    <mi>R</mi>
+                                    <mo>=</mo>
+                                    <mfrac>
+                                        <mrow><mi>D</mi></mrow>
+                                        <mrow><mi>2</mi></mrow> 
+                                    </mfrac>
+                                </mrow>
+                            </math>
+                        </div>
+                        
+                        <br> <br>The formula for <i>area of a circle</i> is: <br> <br>
+                        <div class="math">
+                            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <mrow class="area-formula">
+                                    <mi>A</mi> 
+                                    <mo>=</mo>
+                                    <mi>&#960;</mi>
+                                    <mo>×</mo>
+                                    <msup> 
+                                        <mrow><mi>R</mi></mrow>
+                                        <mrow><mi>2</mi></mrow> 
+                                    </msup>
+                                </mrow>
+                            </math>
+                        </div>
+                        
+                        <br> <br>Just replace <span>&#960;</span> with its approximate value (3.14159...) and there you have it, the surface of a vinyl disc!   
+                    </p>
+                </article>
+            </div>
+
+            <div class="video" id="video">
+                <video width="300" height="190" controls preload="auto" poster="/resources/images/music-vid.jpg">
+                    <source src="resources/videos/Recordplayer_video.mov" type="video/mov">
+                    <source src="resources/videos/Recordplayer_video.mp4" type="video/mp4">
+
+                    <track  src="resources/videos/captions/ro_track.vtt" kind="captions" srclang="en" label="romanian" />
+			
+                    <track  default src="resources/videos/captions/en_track.vtt" kind="captions" srclang="en" label="english" />
+                </video>
+            </div>
+
+
+        </main>
+
+        <%- include("../fragments/footer.ejs") %> 
+
+    </body>
+    
+</html>

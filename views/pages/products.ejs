@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Manage Products</title>
+		<%- include("../fragments/head") %>
+    </head>
+    <body>
+        <header><%- include("../fragments/header") %></header>
+
+        <main>
+            <br>
+            <div>
+                <form id="add" method="post" action="/add_product">
+                    <p><u>Add product</u></p>
+                    <p><label>Id: <input type="text" name="id_product" value=""></label> </p>
+                    <p><label>Album: <input type="text" name="id_product" value=""></label></p>
+                    <p><label>Artist: <input type="text" name="id_product" value=""></label></p>
+                    <p><label>Songs: <input type="text" name="id_product" value=""></label></p>
+                    <p><label>Explicit content: 
+                            <input type="radio" name="affirmative" value="yes" checked>Yes</input>
+                            <input type="radio" name="negative" value="no">No</input>
+                    </label></p>
+                    <p><label>Price: <input type="text" name="id_product" value=""></label></p>
+                    <p><label>Stock: <input type="text" name="id_product" value=""></label></p>
+                         
+                <input type="submit" value="Add">
+            </div>
+            <br>
+            <div>
+                <form id="add" method="post" action="/edit_product">
+                    <p><u>Edit product</u></p>
+                    <label>
+                        Product id: <input type="text" name="id_product" value="">
+                        Field name: <input type="text" name="id_field_edit" value="">
+                        Value: <input type="text" name="id_value_edit" value="">
+                    </label>
+                
+                <input type="submit" value="Edit">
+            </div>
+            <br>
+            <div>
+                <form id="delete" method="post" action="/delete_product">
+                    <p><u>Delete product</u></p>
+                    <label>
+                        Product id: <input type="text" name="id_product" value="">
+                    </label>
+                
+                <input type="submit" value="Delete">
+            </div>
+            <br>
+		</main>
+		
+		<footer><%- include("../fragments/footer") %></footer>
+	</body>
+</html>

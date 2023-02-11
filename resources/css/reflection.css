@@ -1,0 +1,22 @@
+.refl-text{
+    position: relative;
+    left: 25%;
+    transform: skewY(30deg) rotateY(180deg) translate(0, 0);
+    width: max-content;
+    font-size: 1.5rem;
+    top: -20px;
+}
+
+.text{	
+	width: max-content;
+    position: relative;
+    transform: skewY(-30deg);
+    font-size: 1.5rem;
+    transition: color 0.5s linear;
+    top: 0;
+}
+
+
+.text:hover +.refl-text, .text:hover{
+    color: var(--header-color);
+}

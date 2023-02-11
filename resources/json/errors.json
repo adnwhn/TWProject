@@ -1,0 +1,49 @@
+{
+    "base_path": "resources/images/errors",
+    "default_error":{
+        "title":"Error!!!",
+        "text": "An error occured.",
+        "image":"forbidden.png"
+    },
+    "error_types": [
+        {
+            "idx":404,
+            "status":true,
+            "title":"404 - Page not found",
+            "text": "The page you are looking for might have been removed or temporarily unavailable!",
+            "image":"magnifier.png"
+        },
+        {
+            "idx":403,
+            "status":true,
+            "title":"403 - Access denied",
+            "text": "You do not have permission to access this resource!",
+            "image":"forbidden.png"
+        },
+        
+        {
+            "idx":1,
+            "status":false,
+            "title":"Page in the making",
+            "text": "Please be patient! The request page will be available soon!",
+            "image":"forbidden.png"
+        },
+        
+        {
+            "idx":2,
+            "status":false,
+            "title":"Database error",
+            "text": "Service Unavailable. Come back later!",
+            "image":"forbidden.png"
+        },
+
+        {
+            "idx":3,
+            "status":false,
+            "title":"Wrong data error",
+            "text": "Please check the data values!",
+            "image":"forbidden.png"
+        }
+    ]
+}
+  

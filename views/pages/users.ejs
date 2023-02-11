@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html  lang="en">
+    <head>
+        <meta name="description" content="AAV Recs - users.">
+        <meta name="keywords" content="records, AAV, users">
+        <link rel="stylesheet" href="/resources/css/users.css" type="text/css" />
+        <title>Manage Users</title>
+        <%- include("../fragments/head") %>     
+        <script type="text/javascript" src=/resources/js/products.js></script>
+    </head>
+    <body>
+		<header>
+			<%- include("../fragments/header") %>
+		</header>
+
+    <main>
+		<div class="display">
+			<br>
+			<h2>Common users</h2>
+
+			<table id="users" class="table table-striped table-hover table-light">
+			<tr>
+				<th>ID</th><th>Username</th><th>Last name</th><th>First name</th><th>E-mail</th><th>Registration date</th><th>Role</th><th>Modify role</th>
+			</tr>
+
+			<% for (var i = 0; i < users.length; i++) { 
+					if(users[i].rol=="common" && users[i].username!=locals.user.username){
+					%>
+					<tr>
+					<td><%= users[i].id %></td>
+					<td><%= users[i].username %></td>
+					<td><%= users[i].last_name %></td>
+					<td><%= users[i].first_name %></td>
+					<td><%= users[i].email %></td>
+						<%  
+							d=new Date(users[i].add_date)
+							str_date=`${d.getDate()}/${d.getMonth()}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
+						%>
+					<td><%=  str_date %></td>
+					<td><%=  users[i].rol %></td>
+					<td class="smb">
+						<button class="btn btn-primary btn-sm"><p class="sm">Promote</p></button>
+						<button class="btn btn-primary btn-sm"><p class="sm">Demote</p></button>
+					</td>
+					</tr> 
+	
+					<% } %>			
+			<% } %>
+			</table>
+			<br>
+			<h2>Admins</h2>
+
+			<table id="users" class="table table-striped table-hover table-light">
+			<tr>
+				<th>ID</th><th>Username</th><th>Last name</th><th>First name</th><th>E-mail</th><th>Registration date</th><th>Role</th><th>Modify role</th>
+			</tr>
+
+			<% for (var i = 0; i < users.length; i++) { 
+					if(users[i].rol=="admin" && users[i].username!=locals.user.username){
+					%>
+					<tr>
+					<td><%= users[i].id %></td>
+					<td><%= users[i].username %></td>
+					<td><%= users[i].last_name %></td>
+					<td><%= users[i].first_name %></td>
+					<td><%= users[i].email %></td>
+						<%  
+							d=new Date(users[i].add_date)
+							str_date=`${d.getDate()}/${d.getMonth()}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
+						%>
+					<td><%=  str_date %></td>
+					<td><%=  users[i].rol %></td>
+					<td><button class="btn btn-primary btn-sm"><p class="sm">Demote</p></button></td>
+					</tr> 
+	
+					<% } %>			
+			<% } %>
+			</table>
+			
+			<br>
+			<form id="delete" method="post" action="/delete_user">
+				<label>
+					User id: <input type="text" name="id_user" value="">
+				</label>
+				
+				<input type="submit" value="Delete">
+			</form>
+			<br>
+		</div>
+	</main>
+
+    <%- include("../fragments/footer") %>
+
+</body>
+</html>

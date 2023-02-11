@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html  lang="en">
+    <head>
+        <meta name="keywords" content="music, vinyl, record, E-store, disc, album, records, sale, song, analog, turntable, pick-up, rare, exclusive">
+        <meta name="description" content="AAV - all about vinyl. Exclusive record selection: new, pre-owned, rare finds. Buy discs, audio equipment and more!">
+        
+        <title>AAV Recs - Sign In</title>
+        <link rel="stylesheet" href="/resources/css/products.css" type="text/css" />
+        
+        <%- include("../fragments/head") %>     
+        <script type="text/javascript" src=/resources/js/registration.js></script>
+    </head>
+    <body>
+        <%- include("../fragments/header") %>
+
+        <main class="column">
+            <div class="display columnch">
+                <br>
+                <h1>Register</h1>
+                <% if(!locals.answer) { %>    
+
+                    <%-include("../fragments/form", {action: "/registration"}) %>
+                <% } %>
+                
+            <% if(locals.answer) { %>
+            <%- locals.answer+"<br/>"%>
+            <% } %>
+            <% if(locals.error) { %>
+            <%- locals.error %>
+            <% } %>
+            </div>
+
+
+            <div class="columnch">
+                <br>
+                <% if(!locals.user) { %>
+                    <h1>Login</h1>
+                    <form id="form_inreg"  method="post" class="date"  action="/login"  enctype="multipart/form-data">
+                        <p>
+                            <label>
+                                Username: <input type="text" name="username" id="inp-username" value="" required pattern="[A-Za-z0-9]+">
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                Password: <input id="passw" type="password" required  name="password" value="">
+                            </label>
+                        </p>
+                        <p><input type="submit" value="Log"></p>
+                    </form>
+                    <p> <%- locals.eroareLogin %> </p>
+                    <% } else {%>
+                        <%- locals.successLogin %>
+                <% }  %>
+                <br>
+            </div>
+        </main>
+
+        <footer>
+            <%- include("../fragments/footer") %>
+        </footer>
+
+    </body>
+</html>

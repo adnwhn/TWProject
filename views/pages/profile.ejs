@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Profile</title>
+		<%- include("../fragments/head") %>
+    
+		<% if(locals.user) { %>
+		<script>
+			// inputs for profile page are data taken from table (loaded with EJS)
+			window.addEventListener("DOMContentLoaded", function(){
+				document.getElementById("inp-username").value="<%= locals.user.username %>";
+				document.getElementById("inp-username").readOnly=true;
+				document.getElementById("inp-lastname").value="<%= locals.user.last_name %>";
+				document.getElementById("inp-firstname").value="<%= locals.user.first_name %>";
+				document.getElementById("inp-email").value="<%= locals.user.email %>";
+				document.getElementById("p-reintrod").remove();
+				document.getElementById("birthdate").remove(); 
+				document.getElementById("txtpass").remove();
+				document.getElementById("inp-phone").value="<%= locals.user.phone %>";
+				var optiuni=document.getElementById("sel-color").options
+				for (let opt of optiuni)
+					if (opt.value=="<%= locals.user.chat_color %>")
+						opt.selected=true;
+			});
+		</script>
+		<% } %>
+	</head>
+	<body class="container">
+		<header>
+			<%- include("../fragments/header") %>
+		</header>
+		<main>
+			<% if(locals.user) { %>
+				<div class="column">
+					<div class="columnch">
+						<section>
+							<h2>Profile</h2>
+							<p>Welcome to your profile page!</p>
+							<p><%= locals.answer %></p>
+							<figure>
+								<img src="/<%- locals.user.image%>" alt="no picture uploaded" width="150" height="250"/>
+							</figure>
+						</section>
+						<%- include("../fragments/form",{action:"/profile"}) %>
+					</div>
+					<div class="columnch">
+						<h2>Delete account</h2>
+						<p>Saying goodbye so soon?</p>
+						<form id="delete" method="post" action="/delete_account">
+							<label>
+								Password: <input type="password" name="pass_acc" value="">
+							</label>
+							
+							<input type="submit" value="Delete">
+						</form>
+						
+					</div>
+				</div>
+		</main>
+		<% } else { %>
+			<p>You are not logged in.</p>
+		<% } %>
+		<%- include("../fragments/footer") %>
+		
+	</body>
+</html>

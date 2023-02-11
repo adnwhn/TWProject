@@ -1,0 +1,16 @@
+.message-c{
+    background:var(--unselected-text-color);
+    margin-left:10px;
+    min-height:5rem;
+}
+.message-c h3{
+    background:var(--selected-text-color);
+    padding-left:1rem;
+}
+.message-c p{
+    padding-left:1rem;
+}
+
+.message-c time{
+    font-style: italic;
+}

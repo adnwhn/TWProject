@@ -1,0 +1,13 @@
+body.green{
+    --selected-text-color: #799763;
+    --unselected-text-color: #283919;
+    --background-color: #527339;
+    --header-color: #c1e7ab;
+    --color4: #a2b183;
+    --color9: #b9d0a9;
+}
+
+body.green .btn-primary {
+    --bs-btn-bg: var(--header-color);
+    border-color: var(--header-color);
+}

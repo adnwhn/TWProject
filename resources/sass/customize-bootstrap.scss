@@ -1,0 +1,18 @@
+$font-size-base-aux: 1.25rem;
+@use '../../node_modules/bootstrap/scss/bootstrap.scss' with (
+    $primary: #73685C,
+    $form-range-thumb-border-radius:  1.5rem,
+    $form-range-thumb-width: 2rem,
+    $font-size-base: $font-size-base-aux,
+    $font-family-sans-serif: 'Poppins',
+    $h1-font-size: 1.5 * $font-size-base-aux,
+    $border-radius: 5px,
+    $grid-breakpoints: (
+      xs: 0,
+      sm: 500px,
+      md: 700px,
+      lg: 992px,
+      xl: 1200px,
+      xxl: 1400px
+    )
+  );

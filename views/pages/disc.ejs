@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html  lang="en">
+    <head>
+        <meta name="keywords" content="music, vinyl, record, E-store, disc, album, records, sale, song, analog, turntable, pick-up, rare, exclusive">
+        <meta name="description" content="AAV - all about vinyl. Exclusive record selection: new, pre-owned, rare finds. Buy discs, audio equipment and more!">
+        
+        <title>AAV Recs - discs</title>
+        <%- include("../fragments/head") %>     
+        
+        <link href="/resources/css/product.css" type="text/css" rel="stylesheet" />
+
+    </head>
+    <body>
+    <%- include("../fragments/header") %>
+
+    <main>
+        <section>
+            <h2>Disc page</h2>
+                <article id="art-prod" class="column">
+                    <div class="columnch">
+                        <h3><span class="album"><%- locals.disc.album %></span></h3>
+                        <figure class="imag-disc">
+                            <img  src="/resources/images/disc-galery/<%- locals.disc.image %>" alt="[image <%- locals.disc.name %>]" />
+                        </figure>  
+                        <p><b style="background-color: lightgoldenrodyellow;">Artist:</b> <span class="artist"><%- locals.disc.artist %> </span></p>
+                        <p><b style="background-color: lightgoldenrodyellow;">Number of songs:</b> <span class="songs"><%- locals.disc.songs %> </span></p>
+                        <p><b style="background-color: lightgoldenrodyellow;">Composers:</b> <span class="composers"><%- locals.disc.composers %> </span></p>
+                        <p><b style="background-color: lightgoldenrodyellow;">Explicit Content:</b> <span class="explicitContent"><%- locals.disc.explicitcontent %> </span></p>
+                        <% const monthNames = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie","Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie" ]; %>
+                        <%# const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; %>
+
+                        <p><b style="background-color: lightgoldenrodyellow;">Release date:</b> <time class="release"><%- locals.disc.release.getDate()%> <%- monthNames[locals.disc.release.getMonth()]%> <%- locals.disc.release.getFullYear()%></time></p>
+                    </div>
+
+                    <div class="columnch">
+                        <p>Genre: <span class="genre"><%- locals.disc.genre %> </span></p>
+                        <p>Description: <span class="description"><%- locals.disc.description %> </span></p>
+                        <p>Condition: <span class="condition"><%- locals.disc.condition %> </span></p>
+                        <p>Price: <span class="price"><%- locals.disc.price %> </span></p>
+                        <p>Stock: <span class="stock"><%- locals.disc.stock%></span></p>
+                    </div>
+                      
+                </article>
+            
+        </section>
+        <br>
+    </main>
+
+    <%- include("../fragments/footer") %>
+    </body>
+</html>

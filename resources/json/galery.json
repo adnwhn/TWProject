@@ -1,0 +1,131 @@
+{
+	"galery_path":"resources/images/disc-galery",
+	"images": [
+		{
+			"file":"disc1.jpeg",
+			"title":"Album A",
+			"artist": "A",
+			"alt": "Sample Disc 1",
+			"value": ["1"]
+		},
+		{
+			"file":"disc2.jpeg",
+			"title":"Album B",
+			"artist": "B",
+			"alt": "Sample Disc 2",
+			"value": ["3"]
+		},
+		{
+			"file":"disc3.jpeg",
+			"title":"Album C",
+			"artist": "C",
+			"alt": "Sample Disc 3",
+			"value": ["3"]
+		},
+		{
+			"file":"disc4.jpeg",
+			"title":"Album D",
+			"artist": "D",
+			"alt": "Sample Disc 4",
+			"value": ["3"]
+		},
+		{
+			"file":"disc5.jpeg",
+			"title":"Album E",
+			"artist": "E",
+			"alt": "Sample Disc 5",
+			"value": ["2"]
+		},
+		{
+			"file":"disc6.jpeg",
+			"title":"Album F",
+			"artist": "F",
+			"alt": "Sample Disc 6",
+			"value": ["2"]
+		},
+		{
+			"file":"disc7.jpeg",
+			"title":"Album G",
+			"artist": "G",
+			"alt": "Sample Disc 7",
+			"value": ["1"]
+		},
+		{
+			"file":"disc8.jpeg",
+			"title":"Album H",
+			"artist": "H",
+			"alt": "Sample Disc 8",
+			"value": ["1"]
+		},
+		{
+			"file":"disc9.jpeg",
+			"title":"Album I",
+			"artist": "I",
+			"alt": "Sample Disc 9",
+			"value": ["2"]
+		},
+		{
+			"file":"disc10.jpeg",
+			"title":"Album J",
+			"artist": "J",
+			"alt": "Sample Disc 10",
+			"value": ["4"]
+		},
+		{
+			"file":"disc11.jpeg",
+			"title":"Album K",
+			"artist": "K",
+			"alt": "Sample Disc 11",
+			"value": ["3"]
+		},
+		{
+			"file":"disc12.jpeg",
+			"title":"Album L",
+			"artist": "L",
+			"alt": "Sample Disc 12",
+			"value": ["1"]
+		},
+		{
+			"file":"disc13.jpeg",
+			"title":"Album M",
+			"artist": "M",
+			"alt": "Sample Disc 13",
+			"value": ["4"]
+		},
+		{
+			"file":"disc14.jpeg",
+			"title":"Album N",
+			"artist": "N",
+			"alt": "Sample Disc 14",
+			"value": ["1"]
+		},
+		{
+			"file":"disc15.jpeg",
+			"title":"Album O",
+			"artist": "O",
+			"alt": "Sample Disc 15",
+			"value": ["3"]
+		},
+		{
+			"file":"disc16.jpeg",
+			"title":"Album P",
+			"artist": "P",
+			"alt": "Sample Disc 16",
+			"value": ["2"]
+		},
+		{
+			"file":"disc17.jpeg",
+			"title":"Album Q",
+			"artist": "Q",
+			"alt": "Sample Disc 17",
+			"value": ["4"]
+		},
+		{
+			"file":"disc18.jpeg",
+			"title":"Album R",
+			"artist": "R",
+			"alt": "Sample Disc 18",
+			"value": ["2"]
+		}
+	]
+}

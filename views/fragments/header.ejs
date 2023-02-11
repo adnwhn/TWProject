@@ -1,0 +1,98 @@
+<nav class="header-nav">
+    <div>
+        <ion-icon name="search-outline"></ion-icon><span class="search">Search</span> 
+    </div>
+    <ul class="header-menu">
+        <li>
+            <div class="form-check form-switch ">
+				<input class="form-check-input bg-dark" type="checkbox" id="ch-sw-1" checked>
+				<label class="form-check-label" for="ch-sw-1"></label>
+                <button class="btn btn-primary light1" id="theme-change">
+                    <ion-icon name="sunny" id="light-sun"></ion-icon>
+                    <ion-icon name="moon" id="dark-moon"></ion-icon>
+                </button>
+			</div>
+            
+        </li>
+        <li><a href="/registration"> <span class="account">Account</span><ion-icon title="Account" name="person-outline"></ion-icon></a></li>
+        <li><a href="/virtual-cart"> <span class="cart">Cart</span><ion-icon name="cart-outline"></ion-icon></a></li> 
+    </ul>
+</nav>
+
+<header>
+    <div class="title"><a href="/">
+        <h1>AAV Recs.<small class="small"> All About Vinyl</small></h1>
+    </a></div>
+</header>
+
+<nav class="nav">
+
+    <label id="hamburger" for="cb-menu">
+        <ion-icon name="menu-outline"></ion-icon>
+    </label>
+    
+    <input id="cb-menu" type="checkbox">
+
+    <ul class="menu">
+        <li ><a href="home#onsale"><ion-icon name="pricetags-outline"></ion-icon> <span class="sale">Sale </span> </a></li>
+
+        <li><a href="/discs">Genres</a>
+            <ul>
+                
+                <%for (opt of locals.menuOptions){  
+                    if(opt.unnest!="unknown"){%>
+                        <li><a href="/discs?genre=<%-opt.unnest%>" ><%-opt.unnest%></a></li>
+                    <%} %>
+                <%} %>
+ 
+            </ul>
+        </li>
+
+        <li><a href="home#secondhand">Pre-owned</a></li>
+
+        <li><a href="home#accessories">Equipment</a></li>
+
+        <% if(locals?.user?.hasPrivilege?.(locals.Privileges.viewUsers)) { %>
+            <li><div>Manage</div>
+                <ul>
+                    <% if(locals?.user?.hasPrivilege?.(locals.Privileges.addProducts)) { %>
+                        <li><a href="/products">Products</a></li>
+                    <% } %>
+                    <li><a href="/users">Users</a></li>
+                    <li><a href="/charts">Charts</a></li>
+                    <li><a href="/orders">Orders</a></li>
+                </ul>
+            </li>
+        <% } %>
+            <% if(locals.user) { %>
+                <li><div class="flx">
+                        <div>
+                            <%- locals.user.username %>
+                        </div>
+                        <div>
+                            <figure>
+                                <img src="/<%- locals.user.image%>" alt="image" style="width:35%;">
+                            </figure>
+                        </div> 
+                    </div>
+                    <ul>
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/chat">Chat</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </li>
+            <% } %>
+
+        <li class="txt"> <div>Misc</div>
+            <ul>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="home#faq">FAQ</a></li>
+                <li><a href="home#trivia">Trivia</a></li>
+                <li><a href="about">About Us</a></li>
+                <li><a href="policy">Policy</a></li>
+            </ul>
+        </li>                
+    </ul>
+</nav>
+
+

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <meta name="description" content="AAV Recs - chat.">
+        <meta name="keywords" content="records, AAV, chat">
+        <title>Chat</title>
+        <style>#chat_messages{
+                border:1px solid black;
+                height:200px;
+                overflow:auto;
+                width:200px;
+        }</style>
+        <%- include("../fragments/head") %>   
+        <script type="text/javascript" src="../../node_modules/socket.io/client-dist/socket.io.js"></script> 
+        <script>port=<%= port %></script>
+        <script>
+            socketUrl = "../../";  
+            if(document.location.href.indexOf("localhost") != -1) {  
+                socketUrl = "http://127.0.0.1:"+port;
+            }
+            //const socket = io(socketUrl,{reconnect: true});  
+            socket = io();
+            socket.on("new_message", function(name, colorC, message, strRadio) {  
+                var chat=document.getElementById("chat_messages");
+                var date=new Date();
+                var time =date.getHours() + ":"+ date.getMinutes() + ":" + date.getSeconds();
+                chat.innerHTML+=`<p> At <i>${time}</i>, <b> ${name} </b> says: <span style='color:${colorC}'>${message} (${strRadio})</span></p> `;
+                //ca sa scrolleze la final
+                chat.scrollTop=chat.scrollHeight;
+            });
+            
+            function send(){
+                var colorC=document.getElementById("colorC").value;
+                var name=document.getElementById("name").value;
+                var message=document.getElementById("message").value;
+
+                var radioB=document.getElementsByName("react_rad");
+                strRadio="";
+                for(let rad of radioB){
+                    if(rad.checked){
+                        strRadio=rad.value;
+                        break; //exit for because only one radiobutton can be checked
+                    }
+                }
+                
+                fetch("/message",  {		
+                            method: "POST",
+                            headers:{'Content-Type': 'application/json'},
+                            mode: 'cors',		
+                            cache: 'default',
+                            body: JSON.stringify({
+                                colorC: colorC,
+                                name:name,
+                                message:message,
+                                strRadio:strRadio
+                            })
+                        })
+            }
+        </script>
+	</head>
+	<body>
+        <header>
+			<%- include("../fragments/header") %>
+		</header>
+        <main>
+            <div id="chat"><br>
+                <div id="chat_messages" style="background-color: var(--footer-color);"></div><br>
+                <label>Name: <input type="text" id="name" name="name" value="yourName"></label><br><br>
+
+                <label>Message: <textarea id="message" name="message" value="Hi! "></textarea></label><br><br>
+
+                <div>React:
+                    <p><label class="form-check-label" for="rad1"><ion-icon name="happy-outline"></ion-icon>
+                        <input class="form-check-input bg-primary" id="rad1"  name="react_rad" value="Happy React" type="radio"/>
+                    </label></p>
+                    <p><label class="form-check-label" for="rad2"><ion-icon name="heart-outline"></ion-icon>
+                        <input class="form-check-input bg-primary" id="rad2"  name="react_rad" value="Love React" type="radio"/>
+                    </label>
+                    <p><label class="form-check-label" for="rad3"><ion-icon name="heart-dislike-outline"></ion-icon>
+                        <input class="form-check-input bg-primary" id="rad3" name="react_rad" value="Dislike React" type="radio"/>
+                    </label>
+                    <p><label class="form-check-label" for="rad4">No reaction
+                        <input class="form-check-input bg-primary" id="rad4" checked name="react_rad" value="No reaction" type="radio"/>
+                    </label>
+                </div>
+
+                <label>Choose your color: <select id="colorC" name="colorC">
+                    <option value="black">black</option>
+                    <option value="blue">blue</option>
+                    <option value="green">green</option>
+                    <option value="magenta">magenta</option>
+                </select></label><br><br>
+                <button class="btn btn-primary" onclick="send()"><ion-icon name="send-outline"></ion-icon></button>
+            </div><br>
+            <div contenteditable style="border:1px solid black;">Chat chat chat!</div><br>
+        </main>
+		
+        <%- include("../fragments/footer") %>
+	</body>
+</html>

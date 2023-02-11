@@ -1,0 +1,22 @@
+body.dark{
+    --selected-text-color: #8C7F70;
+    --unselected-text-color: #332E29;
+    --background-color: #73685C;
+    --header-color: #F3E8DA;
+    --color4: #B3ABA1;
+    --color9: #D9CFC3;
+
+}
+
+body.dark .btn-primary {
+    --bs-btn-bg: var(--header-color);
+    border-color: var(--header-color);
+}
+
+.light1>*:nth-child(1){
+    display: none;
+}
+
+.dark>#dark-moon{
+    display: none;
+}

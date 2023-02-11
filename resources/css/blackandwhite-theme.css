@@ -1,0 +1,13 @@
+body.blackandwhite{
+    --selected-text-color: #949494;
+    --unselected-text-color: #313131;
+    --background-color: #737373;
+    --header-color: #f2f2f2;
+    --color4: #b4b4b4;
+    --color9: #d2d2d2;
+}
+
+body.blackandwhite .btn-primary {
+    --bs-btn-bg: var(--header-color);
+    border-color: var(--header-color);
+}

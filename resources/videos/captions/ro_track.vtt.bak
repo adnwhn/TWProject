@@ -1,0 +1,46 @@
+WEBVTT - Romanian Track
+
+STYLE
+::cue(#first){
+	font-family: "Source Sans Pro", sans-serif;
+	font-size:20px;
+	text-align:center;
+	color:transparent;
+	background-color:transparent;
+	background-image:linear-gradient(to bottom, black, black 50%, grey);
+	background-clip: text;
+}
+
+STYLE
+::cue(#second){
+	font-family: "Source Sans Pro", sans-serif;
+	font-size:20px;
+	text-align:center;
+	color:transparent;
+	background-color:transparent;
+	background-image:linear-gradient(to bottom, black, black 50%, grey);
+	background-clip: text;
+}
+
+STYLE
+::cue(#third){
+	font-family: "Source Sans Pro", sans-serif;
+	font-size:20px;
+	text-align:center;
+	color:transparent;
+	background-color:transparent;
+	background-image:linear-gradient(to bottom, black, black 50%, grey);
+	background-clip: text;
+}
+
+first
+00:00.000 --> 00:02.000 line:2 align:start
+Uneori, viata inseamna mult zgomot!
+
+second 
+00:04.000 --> 00:05.000 align:left line:7
+Ia o pauza...
+
+third
+00:07.000 --> 00:10.000 align:right line:10
+Asculta muzica!

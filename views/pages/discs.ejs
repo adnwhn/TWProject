@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html  lang="en">
+    <head>
+        <meta name="keywords" content="music, vinyl, record, E-store, disc, album, records, sale, song, analog, turntable, pick-up, rare, exclusive">
+        <meta name="description" content="AAV - all about vinyl. Exclusive record selection: new, pre-owned, rare finds. Buy discs, audio equipment and more!">
+        
+        <title>AAV Recs - discs</title>
+        <%- include("../fragments/head") %>     
+        <script type="text/javascript" src=/resources/js/discs.js></script>
+    </head>
+    <body>
+    <%- include("../fragments/header") %>
+
+    <main>
+        <br>
+        <div class="row">
+
+            <div class="col-sm">
+                <label> Album name: <input class="form-control form-control-sm" type="text" id="inp-lastname" placeholder="<%-locals.inpAlbum%>"></label>
+                
+                <div><br> Number of songs:<!-- same name to form group -->
+                    <p><label class="form-check-label" for="i_rad1">EP (songs &lt; 7)
+                        <input class="form-check-input bg-primary" id="i_rad1"  name="gr_rad" value="0:7" type="radio"/>
+                    </label></p>
+                    <p><label class="form-check-label" for="i_rad2">LP (7 &le; songs &lt; 12)
+                        <input class="form-check-input bg-primary" id="i_rad2"  name="gr_rad" value="7:12" type="radio"/>
+                    </label>
+                    <p><label class="form-check-label" for="i_rad3">Mixtape (12 &le; songs)
+                        <input class="form-check-input bg-primary" id="i_rad3" name="gr_rad" value="12:1000000000" type="radio"/>
+                    </label>
+                    <p><label class="form-check-label" for="i_rad4">All
+                        <input class="form-check-input bg-primary" id="i_rad4" checked name="gr_rad" value="all" type="radio"/>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm form-check"><br> Release year:
+                <p>
+                    <% 
+                        var currentDate = new Date();
+                        var currentYear = currentDate.getFullYear();
+                    %>
+                    <label class="form-check-label" for="i_check1">This year's releases
+                        <input class="form-check-input" id="i_check1" name="gr_chck" checked value="<%-currentYear%>>" type="checkbox"/>
+                    </label>
+                </p>
+                <p>
+                    <label class="form-check-label" for="i_check2">After 2017
+                        <input class="form-check-input" id="i_check2" name="gr_chck" checked value="2017:<%-currentYear%>" type="checkbox"/>
+                    </label>
+                </p>
+                <p>
+                    <label class="form-check-label" for="i_check3">After 2000, no later than 2016
+                        <input class="form-check-input" id="i_check3" name="gr_chck" checked value="2000:2016" type="checkbox"/>
+                    </label> 
+                </p>
+                <p>
+                    <label class="form-check-label" for="i_check4">Before 2000
+                        <input class="form-check-input" id="i_check4" name="gr_chck" checked value="<%-locals.releaseYears[0].year%>:2000" type="checkbox"/>
+                    </label>  
+                </p>
+            </div>
+            <br>
+
+            <div class="col-sm">
+                <label for="inp-price"  class="form-label"> Minimum price: </label>
+                <span id="minRange"><%-locals.inputs.min%></span>
+                <input type="range" class="form-range" id="inp-price" value="0" min="0"  max="30" step="0.1"> 
+                <span id="maxRange"><%-locals.inputs.max%></span>
+                <span id="infoRange">(0)</span>
+                
+            </div>
+            
+
+            <div class="col-sm"><br>
+                <label>Simple select:
+                    <select class="form-select form-select-sm bg-primary text-light" id="inp-cat">
+                        <option id="sel-all" selected value="all">all</option>
+                        <% for (let opt of locals.suboptionsGenres) { 
+                            if(opt.unnest!="unknown"){%>
+                                <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                            <%} %> 
+                        <%} %>
+                    </select>
+                </label>
+            </div>
+            <div class="col-sm"><br>
+                <label>Multi select:
+                    <select class="form-select form-select-sm bg-primary text-light" id="i_sel_multi" multiple size="5">
+                        <%#<option value="M" id="sel-multi-M" selected>Mint</option>
+                        <option value="NM" id="sel-multi-NM" selected>Near Mint</option>
+                        <option value="VG" id="sel-multi-VG" selected>Very Good</option>
+                        <option value="G" id="sel-multi-G" selected>Good</option>
+                        <option value="F" id="sel-multi-F" selected>Fair</option>%>
+                        <%for (cond of locals.conditions){  
+                            if(cond.unnest!="unknown"){%>
+                                <option value="<%-cond.unnest%>" id="sel-multi" selected><%-cond.unnest%></option> 
+                            <%} %>
+                        <%} %>
+                    </select>
+                </label>
+            </div>
+            <div class="col-sm">
+                <label>Datalist:
+                    <input class="form-control form-control-sm" list="id_list" id="i_datalist">
+                    <datalist id="id_list">
+                        <option value="comp1">Comp A</option>
+                        <option value="comp2">Comp AB</option>
+                        <option value="comp3">Comp B</option>
+                        <option value="comp4">Comp BC</option>
+                        <option value="comp5">Comp C</option>
+                        <option value="comp6">Comp CD</option>
+                        <option value="comp7">Comp D</option>
+                        <option value="comp8">Comp E</option>
+                        <option value="comp9">Comp ABC</option>
+                        <option value="comp10">Comp ABCD</option>
+                        <option value="comp11">Comp BDE</option>
+                        <option value="comp12">Comp BE</option>
+                    </datalist><br>
+                </label>
+            </div>
+            <div class="col-sm">
+                <p>Text area:</p>
+                <div class="form-floating">
+                    <textarea class="form-control" id="i_textarea" placeholder="<%locals.inpDescription%>"></textarea>
+                    <label for="i_textarea">Write key words</label>
+                </div>
+            </div>
+            <div class="col-sm">
+                <p>
+                    <br>
+                    <button class="btn btn-primary" id="sortAsc" title="Ascending order by name and the number of songs divided by price"><ion-icon name="arrow-up-outline"></ion-icon></button><br><br>
+                    <button class="btn btn-primary" id="sortDesc" title="Descending order by name and number of songs divided by price"><ion-icon name="arrow-down-outline"></ion-icon></button>
+                </p>
+                <br>
+                <p id="p-sum">Press Alt+"c" for summing the prices of all shown products. </p>
+
+            </div>
+            <p>
+                <button class="btn btn-primary" id="filter" title="Filter"><ion-icon name="funnel-outline"></ion-icon></button>
+                <button class="btn btn-primary" id="reset" title="Reset"><ion-icon name="reload-outline"></ion-icon></button><br>
+            </p>
+            
+            
+        </div>
+
+        <section id="discs">
+            <h2>All Discs</h2>
+            <div class="grid-prod">
+                <% for( let disc of locals.discs) { %>
+                    <% if(disc.stock == 0) {%>
+                        <article class="disc" style="background-color: gray;">
+                    <% } else {%>
+                        <article class="disc">
+                    <% }%>     
+                        <% if(disc.stock == 0) {%>
+                            <h3 class="album" style="background-color: gainsboro; color: black;">Album: <a href="/disc/<%-disc.id %>" style="color: black;"><span class="val-album"><%- disc.album%></span></a></h3>
+                            <div class="info-prod" style="background-color: gray; color: black;">
+                        <% } else {%>
+                            <h3 class="album">Album: <a href="/disc/<%-disc.id %>" ><span class="val-album"><%- disc.album%></span></a></h3>
+                            <div class="info-prod">
+                        <% }%>  
+                        
+                            <p class="artist">Artist: <span class="val-artist"><%- disc.artist%></span></p>
+                            <p class="price">Price: <span class="val-price"><%- disc.price%></span></p>
+                            <p class="songs">Songs: <span class="val-songs"><%- disc.songs%></span></p>
+                            <p class="genre">Genre: <span class="val-genre"><%- disc.genre%></span></p>
+                            <p class="condition">Condition: <span class="val-condition"><%- disc.condition%></span></p>
+                            <p class="explicitContent">Explicit Content: <span class="val-explicitContent"><%- disc.explicitcontent%></span></p>
+                            <p class="releaseYear">Release Year: <span class="val-year"><%- disc.release.getFullYear()%></span></p>
+                            <p class="composers">Composers: <span class="val-composers"><%- disc.composers%></span></p>
+                            <% if(disc.stock == 0) {%>
+                                <p class="stock"><span class="val-stock" style="color:red">OUT OF STOCK!</span></p>
+                            <% } else {%>
+                                <p class="stock">Stock: <span class="val-stock"><%- disc.stock%></span></p>
+                            <% }%>
+                        </div>
+                        <figure>
+                            <a href="/disc/<%-disc.id %>" ><img src="/resources/images/disc-galery/<%- disc.image %>" style="width:23%;height:auto;" alt="[image <%- disc.album %>]" /></a>
+                        </figure>
+                        <label class="select-cart">
+                            Select<br/>
+                            <% if(disc.stock == 0) {%>
+                                <input type="checkbox" class="select-ch-cart" value="<%-disc.id %>" autocomplete="off" disabled>
+                            <% } else {%>
+                                <input type="checkbox" class="select-ch-cart" value="<%-disc.id %>" autocomplete="off">
+                            <% }%>    
+                        </label>
+                    </article>
+                <% }%>
+                <p class="noProductFound">
+                    No product found!
+                </p>
+            </div>
+        </section>
+        <br>
+    </main>
+
+    <%- include("../fragments/footer") %>
+    </body>
+</html>

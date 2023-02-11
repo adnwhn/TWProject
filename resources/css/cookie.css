@@ -1,0 +1,34 @@
+#banner-cookie, #banner-cookie2{
+    border: 4px double var(--unselected-text-color);
+    margin: 5px;
+    width: 40%;
+    padding: 3px;
+    background-color: var(--footer-color);
+
+    animation-name: cookie-animation;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+}
+
+#deny-cookies, #accept-cookies, #deny-cookies2, #accept-cookies2{
+    background-color: var(--header-color);
+}
+
+@keyframes cookie-animation {
+    50%{
+        transform-origin: top left;
+        transform: scale(0.5, 1);
+        transition: width;
+        opacity: 0.5;
+    }
+    100%{
+        transform-origin: top left;
+        transform: scale(1, 1);
+        opacity: 1;
+        background-color: var(--unselected-text-color);
+        border-color: var(--selected-text-color);
+    }
+}
